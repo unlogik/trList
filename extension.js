@@ -64,24 +64,12 @@ function activate(context) {
 		});
 		const envConfig = dotenv.parse(fs.readFileSync(vRoot+'/.env'));
 
-		//process.env.UI5_TASK_NWABAP_DEPLOYER__PASSWORD
-		//process.env.UI5_TASK_NWABAP_DEPLOYER__USER
-		//deployer.configuration.connection.server
-		//deployer.configuration.connection.client
-		//deployer.configuration.ui5.transportNo
-
-		// host: 'vhorbds4ci.hec.orbico.com',
-		// port: '44300',
-		// path: '/sap/bc/adt/cts/transportrequests?requestStatus=D',
-
 		var pass = Buffer.from(envConfig.UI5_TASK_NWABAP_DEPLOYER__USER + ':' + envConfig.UI5_TASK_NWABAP_DEPLOYER__PASSWORD).toString('base64')
 		var url = deployer.configuration.connection.server + 
 				  '/sap/bc/adt/cts/transportrequests?requestStatus=D' +
 				  '&sap-client=' + deployer.configuration.connection.client;
 		var aParts = deployer.configuration.connection.server.split(":"); 
 		var options = {
-			//host: 'vhorbds4ci.hec.orbico.com',
-			//port: '44300',
 			path: '/sap/bc/adt/cts/transportrequests?requestStatus=D',
 			method:  'GET',
 			// authentication headers
